@@ -1,0 +1,106 @@
+<!document html>
+<html lang="en">
+  
+  
+  <head>
+    <title>Face Tracker</title>
+    
+    <meta charset="utf-8">
+    
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
+      
+      body {
+      font-family: 'Lato';
+      background-color: #f0f0f0;
+      margin: 0px auto;
+      max-width: 1150px;
+      }
+      
+      #overlay {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      }
+      
+      #container {
+      position : relative;
+      width : 700px;
+      height : 500px;
+      /*margin : 0px auto;*/
+      }
+      
+      #content {
+      margin-top : 70px;
+      margin-left : 100px;
+      margin-right : 100px;
+      max-width: 950px;
+      }
+      
+      #sketch {
+      display: none;
+      }
+      
+      #filter {
+      display: none;
+      }
+      
+      #convergence {
+      display : inline;
+      }
+      
+      h2 {
+      font-weight : 400;
+      }
+      
+      .btn {
+      font-family: 'Lato';
+      font-size: 16px;
+      }
+      
+      .hide {
+      display : none;
+      }
+    </style>
+    
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-32642923-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  
+  </head>
+  
+  
+  <body>
+    <script src="./clmtrackr/clmtrackr/js/clmtrackr.js"></script>
+    <script src="./clmtrackr/clmtrackr/models/model_pca_20_svm.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./clmtrackr/clmtrackr/styles/imgareaselect-default.css" />
+    <img src="./clumsyboy/boy4.jpg" id="inputImage" width="400" height="300" alt="clumsyboy"></img>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    
+    <script type="text/javascript">
+
+      var ctracker = new clm.tracker();
+      var imageInput = document.getElementById('inputImage');
+      ctracker.init(pModel);
+      ctracker.start(imageInput);
+      
+      function positionLoop() {
+      requestAnimationFrame(positionLoop);
+      var positions = ctracker.getCurrentPosition();
+      // positions = [[x_0, y_0], [x_1,y_1], ... ]
+      // do something with the positions ...
+      }
+      positionLoop();
+
+    </script>
+  </body>
+</html>

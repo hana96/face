@@ -1,0 +1,20 @@
+<!document html>
+<html lang="en">
+  <head>
+    <title>Face Tracker</title>
+    <meta charset="utf-8">
+    
+    <script src="./../js/clmtrackr.js"></script>
+    <script src="./../models/model_pca_20_svm.js"></script>
+    <img src="./clumsyboy/boy4.jpg" id="imageInput" width="400" height="300" alt="clumsyboy"></img>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    
+    <script type="text/javascript">
+      var imageInput = document.getElementById('imageInput');
+      var canvasInput = document.getElementById('canvas');
+      var cc = canvasInput.getContext('2d');
+      var tracker = newclm.tracker();
+      tracker.init(pModel);
+      
+      var positions = tracker.getCurrentPosition;
+      
